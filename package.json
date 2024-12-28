@@ -1,0 +1,12 @@
+{
+  "name": "tubenode",
+  "version": "1.0.0",
+  "description": "Video streaming platform backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": ""
+  },
+  "author": "Parth Vyas",
+  "license": "ISC"
+}
