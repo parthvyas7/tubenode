@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = your_jwt_token_here
+
+### Register
+POST {{baseUrl}}/users/register
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name="fullName"
+
+Parth Vyas
+--boundary123
+Content-Disposition: form-data; name="email"
+
+parth@example.com
+--boundary123
+Content-Disposition: form-data; name="username"
+
+parthvyas
+--boundary123
+Content-Disposition: form-data; name="password"
+
+secret123
+--boundary123
+Content-Disposition: form-data; name="avatar"; filename="sample.jpg"
+Content-Type: image/jpg
+
+< ./public/temp/sample.jpg
+--boundary123--
