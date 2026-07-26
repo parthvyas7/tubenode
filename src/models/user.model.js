@@ -24,11 +24,11 @@ const userSchema = new Schema(
       index: true
     },
     avatar: {
-      type: String, // cloudinary url
+      type: String, 
       required: true,
     },
     coverImage: {
-      type: String, // cloudinary url
+      type: String, 
     },
     watchHistory: [
       {
@@ -43,7 +43,6 @@ const userSchema = new Schema(
     refreshToken: {
       type: String
     }
-
   },
   {
     timestamps: true

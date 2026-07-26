@@ -1,0 +1,48 @@
+$kind: http-request
+name: Register user
+description: ""
+url: "{{host}}{{api_ver}}/users/register"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: avatar
+      src:
+        - /home/parth/Downloads/sample.jpg
+      description: ""
+      disabled: false
+    - type: file
+      key: coverImage
+      src:
+        - /home/parth/Downloads/sample-birch-400x300.jpg
+      description: ""
+      disabled: false
+    - type: text
+      key: username
+      value: user1
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: user1@user.use
+      description: ""
+      disabled: false
+    - type: text
+      key: fullName
+      value: user1
+      description: ""
+      disabled: false
+    - type: text
+      key: password
+      value: user1
+      description: ""
+      disabled: false
+    - type: text
+      key: refreshToken
+      value: ""
+      description: ""
+      disabled: true
+auth:
+  type: noauth
+order: 1784304810848
