@@ -1,0 +1,1156 @@
+{
+  "info": {
+    "_postman_id": "d8b18cde-9dec-43a1-8d64-929f0a982a63",
+    "name": "tubenode",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Complete API collection for TubeNode backend"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "api_ver",
+      "value": "/api/v1"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "id": "5a0ed607-cea4-4262-8911-9eb2ad25abd9",
+      "name": "Healthcheck",
+      "item": [
+        {
+          "id": "8b5f2417-1f30-4dea-9f39-e7ea76267f7c",
+          "name": "Healthcheck",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/healthcheck",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "healthcheck"
+              ]
+            },
+            "description": "Check if the server is healthy and running"
+          }
+        }
+      ]
+    },
+    {
+      "id": "38a4058d-6d8a-4968-97be-107042b5ee8d",
+      "name": "User",
+      "item": [
+        {
+          "name": "Register",
+          "id": "08c3163b-d86f-4bdb-b132-459a6345e719",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "test@test.com",
+                  "type": "text"
+                },
+                {
+                  "key": "fullName",
+                  "value": "Test User",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "test1234",
+                  "type": "text"
+                },
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "src": ""
+                },
+                {
+                  "key": "coverImage",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/register",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "register"
+              ]
+            },
+            "description": "Register a new user with avatar and optional cover image"
+          }
+        },
+        {
+          "name": "Login",
+          "id": "578532c5-96e2-40b0-a8e2-024799d1baba",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"test1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/login",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "description": "Login with email/username and password"
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "id": "b7bc581c-51ef-4a63-a48a-bd134441b6f6",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/refresh-token",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "refresh-token"
+              ]
+            },
+            "description": "Generate new Access Token and Refresh Token"
+          }
+        },
+        {
+          "name": "Logout",
+          "id": "9c7a7609-8ef7-4023-9334-4646485ec78d",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/logout",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "logout"
+              ]
+            },
+            "description": "Logout the currently logged in user"
+          }
+        },
+        {
+          "id": "2ca1f254-4a41-45e0-bb3f-9aa09d067c6b",
+          "name": "Change Current Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"test1234\",\n  \"newPassword\": \"newTest1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/change-password",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "change-password"
+              ]
+            },
+            "description": "Change current user password"
+          }
+        },
+        {
+          "id": "3e221033-2f35-4eab-a685-429c41d22c19",
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/current-user",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "current-user"
+              ]
+            },
+            "description": "Get logged in user details"
+          }
+        },
+        {
+          "id": "44fde701-a66b-4c9c-b4cf-6e03ede5aac8",
+          "name": "Update Account Details",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Updated Full Name\",\n  \"email\": \"updated@test.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/update-account",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "update-account"
+              ]
+            },
+            "description": "Update user's fullName and email"
+          }
+        },
+        {
+          "id": "43249b8c-b471-4bd9-9562-86fb52a252d0",
+          "name": "Update User Avatar",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/avatar",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "avatar"
+              ]
+            },
+            "description": "Update user avatar image"
+          }
+        },
+        {
+          "id": "7e464ac9-fc95-4070-a8d9-262856999d64",
+          "name": "Update User Cover Image",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "coverImage",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/cover-image",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "cover-image"
+              ]
+            },
+            "description": "Update user cover image"
+          }
+        },
+        {
+          "id": "857e9289-1ae6-4fea-929c-0aa4120c7d2b",
+          "name": "Get User Channel Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/c/test",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "c",
+                "test"
+              ]
+            },
+            "description": "Get channel profile by username with subscriber counts"
+          }
+        },
+        {
+          "id": "421f53a4-9afe-466c-a2e6-b159f9b80198",
+          "name": "Get Watch History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/users/history",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "users",
+                "history"
+              ]
+            },
+            "description": "Get watch history of the current user"
+          }
+        }
+      ]
+    },
+    {
+      "id": "87228622-a9e4-4d30-baa5-9bb9bd1fa3d2",
+      "name": "Video",
+      "item": [
+        {
+          "id": "59a8a24b-1947-48c6-b4ca-cbc92be20aac",
+          "name": "Get All Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos?page=1&limit=10&query=&sortBy=createdAt&sortType=desc&userId=",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Videos per page"
+                },
+                {
+                  "key": "query",
+                  "value": "",
+                  "description": "Search query for title/description"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "createdAt",
+                  "description": "Sort field"
+                },
+                {
+                  "key": "sortType",
+                  "value": "desc",
+                  "description": "asc or desc"
+                },
+                {
+                  "key": "userId",
+                  "value": "",
+                  "description": "Filter by user ID (optional)"
+                }
+              ]
+            },
+            "description": "Get all videos with pagination and search filter"
+          }
+        },
+        {
+          "id": "146d2996-23b0-4402-88c6-10c03f2c9f06",
+          "name": "Publish A Video",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "My First Video",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Video description here",
+                  "type": "text"
+                },
+                {
+                  "key": "videoFile",
+                  "type": "file",
+                  "src": ""
+                },
+                {
+                  "key": "thumbnail",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos"
+              ]
+            },
+            "description": "Upload and publish a video"
+          }
+        },
+        {
+          "id": "fa06423d-73e6-41b6-9517-63ec60bcd43a",
+          "name": "Get Video By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Get video details by ID"
+          }
+        },
+        {
+          "id": "39ac8a34-da27-400c-8e29-a342595e7f74",
+          "name": "Update Video Details / Thumbnail",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Updated Video Title",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "type": "text"
+                },
+                {
+                  "key": "thumbnail",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Update title, description, or thumbnail of a video"
+          }
+        },
+        {
+          "id": "0a09eff6-f42b-49c4-bf67-eb10db34766b",
+          "name": "Delete Video",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Delete a video and its assets on Cloudinary"
+          }
+        },
+        {
+          "id": "b2192b89-8fdc-44d2-87f4-54f94085c940",
+          "name": "Toggle Publish Status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/videos/toggle/publish/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "videos",
+                "toggle",
+                "publish",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Toggle video published status"
+          }
+        }
+      ]
+    },
+    {
+      "id": "360d022c-7e02-484e-a876-6c6d9f3cac96",
+      "name": "Tweet",
+      "item": [
+        {
+          "id": "f12651e5-4d5f-4cb4-a07c-cc3fb8018b7f",
+          "name": "Create Tweet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Hello world! This is my first tweet.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/tweets",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "tweets"
+              ]
+            },
+            "description": "Create a new tweet"
+          }
+        },
+        {
+          "id": "349d44c8-4187-4fe6-8b9b-8033591aad64",
+          "name": "Get User Tweets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/tweets/user/{{userId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "tweets",
+                "user",
+                "{{userId}}"
+              ]
+            },
+            "description": "Get all tweets of a specific user"
+          }
+        },
+        {
+          "id": "70e20b6c-12f3-4c8e-a54c-ace7909dc4dd",
+          "name": "Update Tweet",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Updated tweet content.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/tweets/{{tweetId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "tweets",
+                "{{tweetId}}"
+              ]
+            },
+            "description": "Update tweet content"
+          }
+        },
+        {
+          "id": "83a4ee2b-15e0-4079-b092-2cd7732fda7f",
+          "name": "Delete Tweet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/tweets/{{tweetId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "tweets",
+                "{{tweetId}}"
+              ]
+            },
+            "description": "Delete a tweet"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fbedd825-886a-4d94-9a1c-00f3d5c6f12a",
+      "name": "Subscription",
+      "item": [
+        {
+          "id": "5ee726cd-5e37-4ec1-a5c6-bc5f69b2fb62",
+          "name": "Toggle Subscription",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/subscriptions/c/{{channelId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "subscriptions",
+                "c",
+                "{{channelId}}"
+              ]
+            },
+            "description": "Toggle subscription for a channel"
+          }
+        },
+        {
+          "id": "0008020b-dbc2-4109-b088-4ee622d21805",
+          "name": "Get Channel Subscribers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/subscriptions/c/{{channelId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "subscriptions",
+                "c",
+                "{{channelId}}"
+              ]
+            },
+            "description": "Get list of subscribers for a channel"
+          }
+        },
+        {
+          "id": "e04b1141-1d09-4bdc-bce7-fe262909956a",
+          "name": "Get Subscribed Channels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/subscriptions/u/{{subscriberId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "subscriptions",
+                "u",
+                "{{subscriberId}}"
+              ]
+            },
+            "description": "Get list of channels a subscriber is subscribed to"
+          }
+        }
+      ]
+    },
+    {
+      "id": "91c4d43e-7ef6-43eb-8192-0bb865087821",
+      "name": "Comment",
+      "item": [
+        {
+          "id": "c1ed4519-8aa2-4e0b-bd7a-8fa7800a610b",
+          "name": "Get Video Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/comments/{{videoId}}?page=1&limit=10",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "comments",
+                "{{videoId}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Comments per page"
+                }
+              ]
+            },
+            "description": "Get all comments for a video with pagination"
+          }
+        },
+        {
+          "id": "ef1fa636-89b2-4589-94a8-ae1cf9cbbb5f",
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"This is a great video!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/comments/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "comments",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Add a comment to a video"
+          }
+        },
+        {
+          "id": "5d3f2ce8-70fe-4fab-88d1-f9cb89ee9ad8",
+          "name": "Update Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Updated comment content.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/comments/c/{{commentId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "comments",
+                "c",
+                "{{commentId}}"
+              ]
+            },
+            "description": "Update an existing comment"
+          }
+        },
+        {
+          "id": "c666241b-ede5-4cde-963e-ed7a8b02308a",
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/comments/c/{{commentId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "comments",
+                "c",
+                "{{commentId}}"
+              ]
+            },
+            "description": "Delete a comment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "105a98b2-b394-409a-b77d-3ba4e869a57d",
+      "name": "Like",
+      "item": [
+        {
+          "id": "836b3dca-b577-4702-b8c1-8805ac252132",
+          "name": "Toggle Video Like",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/likes/toggle/v/{{videoId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "likes",
+                "toggle",
+                "v",
+                "{{videoId}}"
+              ]
+            },
+            "description": "Like or unlike a video"
+          }
+        },
+        {
+          "id": "520bf5ce-98d9-4f56-a6fa-d4c2f54f6a3d",
+          "name": "Toggle Comment Like",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/likes/toggle/c/{{commentId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "likes",
+                "toggle",
+                "c",
+                "{{commentId}}"
+              ]
+            },
+            "description": "Like or unlike a comment"
+          }
+        },
+        {
+          "id": "18676820-fd75-4ff4-b5a5-8ca49a870ee0",
+          "name": "Toggle Tweet Like",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/likes/toggle/t/{{tweetId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "likes",
+                "toggle",
+                "t",
+                "{{tweetId}}"
+              ]
+            },
+            "description": "Like or unlike a tweet"
+          }
+        },
+        {
+          "id": "b076fe74-6c0f-4f3f-b42f-75f82d6ef744",
+          "name": "Get Liked Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/likes/videos",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "likes",
+                "videos"
+              ]
+            },
+            "description": "Get all videos liked by current user"
+          }
+        }
+      ]
+    },
+    {
+      "id": "e84ebd37-2fd3-4e7a-80ee-4f40d52343cc",
+      "name": "Playlist",
+      "item": [
+        {
+          "id": "7f397ca1-32c5-4a30-8653-0e86a29596a6",
+          "name": "Create Playlist",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My Favorite Videos\",\n  \"description\": \"A playlist of best videos\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist"
+              ]
+            },
+            "description": "Create a new playlist"
+          }
+        },
+        {
+          "id": "e6344541-246f-4c02-aceb-5a0638ead255",
+          "name": "Get Playlist By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/{{playlistId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "{{playlistId}}"
+              ]
+            },
+            "description": "Get playlist details and videos"
+          }
+        },
+        {
+          "id": "40dce09f-815d-45b0-98a9-2a0c3d4fd1f5",
+          "name": "Update Playlist",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Playlist Name\",\n  \"description\": \"Updated description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/{{playlistId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "{{playlistId}}"
+              ]
+            },
+            "description": "Update playlist name and description"
+          }
+        },
+        {
+          "id": "ee581ba3-4cdd-41fd-aaa4-ebeea994d3c3",
+          "name": "Delete Playlist",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/{{playlistId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "{{playlistId}}"
+              ]
+            },
+            "description": "Delete a playlist"
+          }
+        },
+        {
+          "id": "c0782b8f-2e17-4a98-9426-897420e743cb",
+          "name": "Add Video To Playlist",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/add/{{videoId}}/{{playlistId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "add",
+                "{{videoId}}",
+                "{{playlistId}}"
+              ]
+            },
+            "description": "Add a video to a playlist"
+          }
+        },
+        {
+          "id": "d6645c7f-7fa2-4d06-9254-fee359495bfe",
+          "name": "Remove Video From Playlist",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/remove/{{videoId}}/{{playlistId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "remove",
+                "{{videoId}}",
+                "{{playlistId}}"
+              ]
+            },
+            "description": "Remove a video from a playlist"
+          }
+        },
+        {
+          "id": "5853a697-bb3f-4d4c-a480-4a3d20c29648",
+          "name": "Get User Playlists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/playlist/user/{{userId}}",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "playlist",
+                "user",
+                "{{userId}}"
+              ]
+            },
+            "description": "Get all playlists created by a user"
+          }
+        }
+      ]
+    },
+    {
+      "id": "935ddb16-22f7-4ac8-81cc-057a3579dd54",
+      "name": "Dashboard",
+      "item": [
+        {
+          "id": "1ff6d385-2b03-4287-843f-e6f2b1632ddd",
+          "name": "Get Channel Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/dashboard/stats",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "dashboard",
+                "stats"
+              ]
+            },
+            "description": "Get channel total views, subscribers, videos, and likes"
+          }
+        },
+        {
+          "id": "4324a569-487c-4d94-91f0-c36631082398",
+          "name": "Get Channel Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_ver}}/dashboard/videos",
+              "host": [
+                "{{base_url}}{{api_ver}}"
+              ],
+              "path": [
+                "dashboard",
+                "videos"
+              ]
+            },
+            "description": "Get all videos uploaded by the channel with like counts"
+          }
+        }
+      ]
+    }
+  ]
+}
