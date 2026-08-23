@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js"
 import { APIError } from "../utils/APIError.js"
 import { APIResponse } from "../utils/APIResponse.js"
-import { uploadOnCloudinary } from "../utils/cloudinary.js"
+import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -217,7 +217,7 @@ const updateAvatar = asyncHandler(async (req, res) => {
     throw new APIError(400, "Avatar file is missing")
   }
 
-  // TODO: Delete old image
+  const oldAvatarUrl = req.user?.avatar
 
   const avatar = await uploadOnCloudinary(avatarLocalPath)
 
@@ -235,6 +235,10 @@ const updateAvatar = asyncHandler(async (req, res) => {
     { new: true }
   ).select("-password")
 
+  if (oldAvatarUrl) {
+    await deleteFromCloudinary(oldAvatarUrl)
+  }
+
   return res
     .status(200)
     .json(
@@ -249,7 +253,8 @@ const updateCoverImage = asyncHandler(async (req, res) => {
     throw new APIError(400, "Cover image file is missing!")
   }
 
-  //TODO: delete old image
+  const oldCoverImageUrl = req.user?.coverImage
+
   const coverImage = await uploadOnCloudinary(coverImageLocalPath)
 
   if (!coverImage.url) {
@@ -265,6 +270,10 @@ const updateCoverImage = asyncHandler(async (req, res) => {
     },
     { new: true }
   ).select("-password")
+
+  if (oldCoverImageUrl) {
+    await deleteFromCloudinary(oldCoverImageUrl)
+  }
 
   return res
     .status(200)
@@ -348,7 +357,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
   const user = await User.aggregate([
     {
       $match: {
-        _id: new mongoose.Types.ObjectId(req.user._id)
+        _id: new mongoose.Types.ObjectId(String(req.user._id))
       }
     },
     {
