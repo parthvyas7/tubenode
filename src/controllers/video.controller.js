@@ -1,7 +1,7 @@
 import mongoose, { isValidObjectId } from "mongoose"
 import { Video } from "../models/video.model.js"
 import { APIError } from "../utils/APIError.js"
-import { APIResponse } from "../utils/APIRespone.js"
+import { APIResponse } from "../utils/APIResponse.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 
 const getAllVideos = asyncHandler(async (req, res) => {
