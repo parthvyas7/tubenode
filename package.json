@@ -18,9 +18,12 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.9.6",
+    "mongoose-aggregate-paginate-v2": "^1.1.5",
     "multer": "^2.2.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1",
     "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.1.14"
   }
